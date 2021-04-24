@@ -8,16 +8,17 @@ class YouTuber(socketserver.BaseRequestHandler):
 
         if not url.startswith("/?v="):
             print("Invalid url: " + url)
-            response("Please provide video id.")
+            self.response("Please provide video id.")
             return
 
         # get video id from url
         vid = url[4:]
+        print("Processing vid: " + vid)
 
         # TODO: Add logic to remove video id from watch history. Only remove videos, if they hadn't been previously on the list!!
 
         # send response
-        response("Removed video id from history: " + vid)
+        self.response("Removed video id from history: " + vid)
 
     def response(self, msg):
         self.request.sendall(str.encode("HTTP/1.1 200 OK\n\n" + msg))

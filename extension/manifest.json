@@ -21,7 +21,15 @@
     "page": "options.html"
   },
 
-  "permissions": ["storage"],
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+
+  "permissions": [
+    "storage",
+    "http://localhost/*"
+  ],
   
   "applications": {
     "gecko": {
