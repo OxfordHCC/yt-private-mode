@@ -1,0 +1,31 @@
+{
+  "manifest_version": 2,
+  "name": "YT Private Mode",
+  "version": "1.0.0",
+  "default_locale": "en",
+  "description": "__MSG_extensionDescription__",
+  "icons": {
+    "48": "icons/god-48.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.youtube.com/*"
+      ],
+      "js": [
+        "main.js"
+      ]
+    }
+  ],
+  "options_ui": {
+    "page": "options.html"
+  },
+
+  "permissions": ["storage"],
+  
+  "applications": {
+    "gecko": {
+      "id": "addon@example.com"
+    }
+  }
+}
