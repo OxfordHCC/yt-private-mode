@@ -4,9 +4,10 @@ var USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, lik
 
 async function sha1(message) {
   const msgUint8 = new TextEncoder().encode(message);                           // encode as (utf-8) Uint8Array
-  const hashBuffer = await crypto.subtle.digest('SHA-1', msgUint8);           // hash the message
+  const hashBuffer = await crypto.subtle.digest('SHA-1', msgUint8);             // hash the message
   const hashArray = Array.from(new Uint8Array(hashBuffer));                     // convert buffer to byte array
   const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join(''); // convert bytes to hex string
+  
   return hashHex;
 }
 
@@ -33,13 +34,16 @@ function getCookieValue(a) {
 
 async function _authorization_sapisidhash_header() {
     let now = Date.now();
+  
     let sapisid = getCookieValue("SAPISID");
     if (!sapisid)
         sapisid = getCookieValue("__Secure-3PAPISID");
     if (!sapisid)
         return;
+  
     let hex = await sha1(now + " " + sapisid + " https://www.youtube.com");
-    return "SAPISIDHASH "+ now + "_" + hex;
+  
+    return "SAPISIDHASH " + now + "_" + hex;
 }
 
 function find_ytcfg(content) {
