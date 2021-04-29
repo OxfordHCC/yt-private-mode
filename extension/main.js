@@ -98,7 +98,7 @@ async function single_feedback_api_call(ytcfg, feedback_token, click_tracking_pa
         method: 'POST',
         headers: {
             'Authority': 'www.youtube.com',
-            'Authorization': await self._authorization_sapisidhash_header(),
+            'Authorization': await ._authorization_sapisidhash_header(),
             'X-Goog-AuthUser': '0',
             'X-Origin': 'https://www.youtube.com',
             'Content-Type': 'application/json'
